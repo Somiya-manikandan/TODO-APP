@@ -6,9 +6,7 @@ from PyQt5.QtWidgets import (
     QLabel, QComboBox, QDateEdit, QStackedWidget
 )
 from PyQt5.QtCore import QDate
-from PyQt5.QtGui import QFont
-
-# ---------------- DATABASE SETUP ---------------- #
+from PyQt5.QtGui import QFont
 
 conn = sqlite3.connect("tasks.db")
 cursor = conn.cursor()
@@ -33,9 +31,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 """)
 
 conn.commit()
-
-
-# ---------------- MAIN APP ---------------- #
+
 
 class MainApp(QWidget):
     def __init__(self):
@@ -58,8 +54,7 @@ class MainApp(QWidget):
 
         # Default Theme
         self.set_pink_theme()
-
-    # ---------------- THEMES ---------------- #
+
 
     def set_pink_theme(self):
         self.setStyleSheet("""
@@ -111,7 +106,6 @@ class MainApp(QWidget):
             }
         """)
 
-    # ---------------- LOGIN PAGE ---------------- #
 
     def create_login_page(self):
         page = QWidget()
@@ -140,8 +134,7 @@ class MainApp(QWidget):
 
         page.setLayout(layout)
         return page
-
-    # ---------------- TODO PAGE ---------------- #
+
 
     def create_todo_page(self):
         page = QWidget()
@@ -194,15 +187,13 @@ class MainApp(QWidget):
         page.setLayout(layout)
         return page
 
-    # ---------------- THEME SWITCH ---------------- #
 
     def toggle_theme(self):
         if "#FCE4EC" in self.styleSheet():
             self.set_green_theme()
         else:
             self.set_pink_theme()
-
-    # ---------------- LOGIN LOGIC ---------------- #
+
 
     def login(self):
         username = self.username_input.text()
@@ -239,9 +230,7 @@ class MainApp(QWidget):
         self.username_input.clear()
         self.password_input.clear()
         self.task_list.clear()
-        self.stack.setCurrentIndex(0)
-
-    # ---------------- TASK FUNCTIONS ---------------- #
+        self.stack.setCurrentIndex(0)
 
     def add_task(self):
         task = self.task_input.text()
@@ -292,8 +281,6 @@ class MainApp(QWidget):
             conn.commit()
             self.load_tasks()
 
-
-# ---------------- RUN APP ---------------- #
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
