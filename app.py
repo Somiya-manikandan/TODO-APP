@@ -2,7 +2,6 @@ import streamlit as st
 import sqlite3
 from datetime import date
 
-# ---------- DATABASE ---------- #
 
 conn = sqlite3.connect("tasks.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -28,7 +27,6 @@ CREATE TABLE IF NOT EXISTS tasks (
 
 conn.commit()
 
-# ---------- PASTEL GREEN THEME ---------- #
 
 st.markdown("""
     <style>
@@ -47,12 +45,12 @@ st.markdown("""
 
 st.title("🌿 Smart To-Do App")
 
-# ---------- SESSION ---------- #
+
 
 if "user_id" not in st.session_state:
     st.session_state.user_id = None
 
-# ---------- LOGIN PAGE ---------- #
+
 
 if st.session_state.user_id is None:
 
@@ -90,7 +88,6 @@ if st.session_state.user_id is None:
             except:
                 st.error("Username already exists")
 
-# ---------- TODO PAGE ---------- #
 
 else:
     st.success("Logged in successfully!")
@@ -144,4 +141,5 @@ else:
                     (task[0],)
                 )
                 conn.commit()
+
                 st.rerun()
